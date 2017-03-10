@@ -13,7 +13,7 @@ Edit the post contents in index.js
 nvim index.js
 ```
 
-Send the request:
+Send the request: (put the ec2 instance that caisson's running on in an env var)
 ```bash
-node index.js
+CAISSON_EC2_IP="X.X.X.X" node index.js
 ```
