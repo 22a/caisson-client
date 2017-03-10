@@ -1,7 +1,7 @@
 var request = require("request");
 
 var options = { method: 'POST',
-  url: `http://${process.env.CAISSON_EC2_IP}:4001/execute`,
+  url: `http://${process.env.CAISSON_EC2_IP}/execute`,
   headers:
   { 'cache-control': 'no-cache',
     'content-type': 'application/x-www-form-urlencoded' },
@@ -9,22 +9,30 @@ var options = { method: 'POST',
   { timelimit: '3',
     memlimit: '1000',
 
-    // lang: 'bash',
-    // payload: `
-    //   echo hi;
-    //   rm -rf /; # this is safe now ¯\_(ツ)_/¯
-    //   sleep 60; # this is prevented now
-    // `}
-
     lang: 'bash',
     payload: `
-      pwd;
-      id -u -n;
-      id -u;
-      ping 8.8.8.8;
-      grep Cap /proc/self/status;
-      dd if=/dev/urandom bs=3 count=1;
+      yes
     `}
+
+      // end=$((SECONDS+1))
+      // while [ $SECONDS -lt $end ]; do
+      //   echo "normal beans"
+      //   >&2 echo "error beans";
+      // done
+
+      // :(){ :|:& };: # :pray: ty kernel memory limits
+      // sleep 60; # this is prevented now
+      // rm -rf /; # this is safe now ¯\_(ツ)_/¯
+
+    // lang: 'bash',
+    // payload: `
+    //   pwd;
+    //   id -u -n;
+    //   id -u;
+    //   ping 8.8.8.8;
+    //   grep Cap /proc/self/status;
+    //   dd if=/dev/urandom bs=3 count=1;
+    // `}
 
     // lang: 'python',
     // payload: `
